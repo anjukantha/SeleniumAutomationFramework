@@ -44,9 +44,9 @@ public final class ExtentReport {
 			spark.config().setTheme(Theme.STANDARD);
 			spark.config().setDocumentTitle("Automation Report");
 			spark.config().setReportName("Automation Report");
-			List<ViewName> DEFAULT_ORDER = Arrays.asList(ViewName.DASHBOARD, ViewName.CATEGORY, ViewName.AUTHOR,
+			List<ViewName> order = Arrays.asList(ViewName.DASHBOARD, ViewName.CATEGORY, ViewName.AUTHOR,
 					ViewName.DEVICE, ViewName.TEST, ViewName.EXCEPTION, ViewName.LOG);
-			spark.viewConfigurer().viewOrder().as(DEFAULT_ORDER);
+			spark.viewConfigurer().viewOrder().as(order);
 
 			extent.attachReporter(spark);
 			extent.setSystemInfo("Module name", "Work Module");

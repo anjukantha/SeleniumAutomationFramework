@@ -6,6 +6,7 @@ import static com.asp.enums.LogType.SKIP;
 import static com.asp.reports.Logger.log;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
@@ -17,6 +18,7 @@ import com.asp.annotations.FrameworkAnnotation;
 import com.asp.constants.FrameworkConstants;
 import com.asp.constants.TestNameManager;
 import com.asp.reports.ExtentReport;
+import com.asp.utils.ScreenshotUtils;
 
 /**
  * Implements {@link org.testng.ITestListener} and
@@ -55,7 +57,6 @@ public class ListenerClass implements ITestListener, ISuiteListener {
 			}
 		}
 		ExtentReport.initReports();
-
 	}
 
 	/**
@@ -115,6 +116,11 @@ public class ListenerClass implements ITestListener, ISuiteListener {
 	public void onTestFailure(ITestResult result) {
 		RetryAnalyzeManager.unload();
 		log(FAIL, "Test: " + FrameworkConstants.getTestName() + " failed");
+		try {
+			ScreenshotUtils.getScreenshot("Failed screenshots");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		TestNameManager.unload();
 	}
 

@@ -40,7 +40,7 @@ public final class PropertyUtils {
 	}
 
 	/**
-	 * Receives the {@link com.asp.enums.ConfigProperties},converts to lowercase ,
+	 * Receives the {@link com.asp.enums.ConfigProperties},converts to lower case ,
 	 * return the corresponding value for the key from the HashMap
 	 * 
 	 * @author Anjan S P

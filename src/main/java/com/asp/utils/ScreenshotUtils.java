@@ -49,9 +49,9 @@ public final class ScreenshotUtils {
 	 * @return
 	 * @throws IOException
 	 */
-	public String getScreenshot(String folderName) throws IOException {
+	public static String getScreenshot(String folderName) throws IOException {
 		File src = ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.FILE);
-		String destPath = FrameworkConstants.getCurrentresultsPath() + "/" + folderName + "/";
+		String destPath = FrameworkConstants.getCurrentresultsPath() + folderName;
 		String destFilePath = "";
 		File file;
 		for (int i = 0; i < 200; i++) {
@@ -72,7 +72,7 @@ public final class ScreenshotUtils {
 	 * @return file path
 	 * @throws IOException
 	 */
-	private String addEnvironmentDetails(String destFilePath) throws IOException {
+	private static String addEnvironmentDetails(String destFilePath) throws IOException {
 		BufferedImage image = ImageIO.read(new File(destFilePath));
 		Graphics g = image.getGraphics();
 		g.setFont(g.getFont().deriveFont(12f));

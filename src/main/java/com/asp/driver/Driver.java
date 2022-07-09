@@ -1,6 +1,11 @@
 package com.asp.driver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Objects;
+
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.asp.enums.ConfigProperties;
 import com.asp.utils.PropertyUtils;
@@ -17,11 +22,19 @@ import com.asp.utils.PropertyUtils;
  */
 
 public final class Driver {
+	static String browser;
 
 	/**
 	 * Private constructor to avoid external instantiation
 	 */
 	private Driver() {
+	}
+
+	static {
+		String browser = System.getProperty("browser");
+		if (Objects.isNull(browser)) {
+			browser = PropertyUtils.get(ConfigProperties.BROWSER);
+		}
 	}
 
 	/**
@@ -33,22 +46,39 @@ public final class Driver {
 	 */
 	public static void initDriver() {
 		if (Objects.isNull(DriverManager.getDriver())) {
-			String browser = System.getProperty("browser");
-			if (Objects.isNull(browser)) {
-				browser = PropertyUtils.get(ConfigProperties.BROWSER);
+			switch (browser) {
+			case "chrome":
+				DriverManager.setDriver(GetChromeDriver.driver(false));
+				break;
+			case "chrome-incognito":
+				DriverManager.setDriver(GetChromeDriver.driver(true));
+				break;
+			case "firefox":
+				DriverManager.setDriver(GetFirefoxDriver.driver(false));
+				break;
+			case "firefox-private":
+				DriverManager.setDriver(GetFirefoxDriver.driver(true));
+				break;
+			case "edge":
+				DriverManager.setDriver(GetEdgeDriver.driver(false));
+				break;
+			case "edge-inprivate":
+				DriverManager.setDriver(GetEdgeDriver.driver(true));
+				break;
+			case "grid": {
+				EdgeOptions eo = new EdgeOptions();
+				eo.setPlatformName("Windows 10");
+				try {
+					DriverManager.setDriver(
+							new RemoteWebDriver(new URL(PropertyUtils.get(ConfigProperties.SELENIUMGRIDURL)), eo));
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+				}
 			}
-			if (browser.contains("chrome")) {
-				if (browser.contains("incognito")) {
-					DriverManager.setDriver(GetChromeDriver.driver(true));
-				} else {
-					DriverManager.setDriver(GetChromeDriver.driver(false));
-				}
-			} else if (browser.contains("firefox")) {
-				if (browser.contains("private")) {
-					DriverManager.setDriver(GetFirefoxDriver.driver(true));
-				} else {
-					DriverManager.setDriver(GetFirefoxDriver.driver(false));
-				}
+				break;
+			default:
+				DriverManager.setDriver(GetEdgeDriver.driver(false));
+				break;
 			}
 		}
 	}

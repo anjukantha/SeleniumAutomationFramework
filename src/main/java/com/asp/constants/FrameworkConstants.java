@@ -40,10 +40,16 @@ public final class FrameworkConstants {
 		return EXTENTREPORTPATH;
 	}
 
+	/**
+	 * @return Test data excel path
+	 */
 	public static String getExcelpath() {
 		return EXCELPATH;
 	}
 
+	/**
+	 * @return JSON file path
+	 */
 	public static String getJsonconfigfilepath() {
 		return JSONCONFIGFILEPATH;
 	}
@@ -52,12 +58,16 @@ public final class FrameworkConstants {
 		return EXPLICITWAIT;
 	}
 
+	/**
+	 * 
+	 * @return Config file path
+	 */
 	public static String getConfigFilePath() {
 		return CONFIGFILEPATH;
 	}
 
 	/**
-	 * @return the currentpath
+	 * @return the current working path
 	 */
 	public static String getCurrentPath() {
 		return CURRENTPATH;
@@ -71,35 +81,35 @@ public final class FrameworkConstants {
 	}
 
 	/**
-	 * @return the resourcespath
+	 * @return the resources path
 	 */
 	public static String getResourcesPath() {
 		return RESOURCESPATH;
 	}
 
 	/**
-	 * @return the resultspath
+	 * @return the results path
 	 */
 	public static String getResultsPath() {
 		return RESULTSPATH;
 	}
 
 	/**
-	 * @return the currentresultspath
+	 * @return the current results path
 	 */
 	public static String getCurrentresultsPath() {
 		return CURRENTRESULTSPATH;
 	}
 
 	/**
-	 * @return the pdfreportspath
+	 * @return the pdf reports path
 	 */
 	public static String getPdfreportsPath() {
 		return PDFREPORTSPATH;
 	}
 
 	/**
-	 * @return the temppath
+	 * @return the temp path
 	 */
 	public static String getTempPath() {
 		return TEMPPATH;

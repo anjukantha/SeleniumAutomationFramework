@@ -26,4 +26,8 @@ public final class DecodeUtils {
 		return new String(Base64.getDecoder().decode(encodedString.getBytes()));
 	}
 
+	public static void main(String[] args) {
+		String encode = "Anjan";
+		System.out.println(Base64.getEncoder().encode(encode.getBytes()));
+	}
 }
