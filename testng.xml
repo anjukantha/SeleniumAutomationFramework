@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="2" parallel="methods" name="LoginPage">
+	<listeners>
+		<listener class-name="com.asp.listeners.ListenerClass" />
+		<listener
+			class-name="com.asp.listeners.AnnotationTransformer" />
+	</listeners>
+	<test thread-count="1" parallel="methods" name="LoginPageTest">
+		<classes>
+			<class name="com.asp.rahulshetty.LoginPageTest" />
+		</classes>
+	</test>
+</suite>

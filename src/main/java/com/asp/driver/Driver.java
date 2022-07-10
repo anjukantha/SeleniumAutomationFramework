@@ -31,7 +31,7 @@ public final class Driver {
 	}
 
 	static {
-		String browser = System.getProperty("browser");
+		browser = System.getProperty("browser");
 		if (Objects.isNull(browser)) {
 			browser = PropertyUtils.get(ConfigProperties.BROWSER);
 		}

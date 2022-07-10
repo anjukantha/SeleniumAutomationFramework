@@ -51,7 +51,7 @@ public final class ScreenshotUtils {
 	 */
 	public static String getScreenshot(String folderName) throws IOException {
 		File src = ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.FILE);
-		String destPath = FrameworkConstants.getCurrentresultsPath() + folderName;
+		String destPath = FrameworkConstants.getCurrentresultsPath() + "/Screenshots/" + folderName + "/";
 		String destFilePath = "";
 		File file;
 		for (int i = 0; i < 200; i++) {

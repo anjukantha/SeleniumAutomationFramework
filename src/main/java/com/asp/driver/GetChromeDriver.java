@@ -36,7 +36,7 @@ public class GetChromeDriver {
 		if (incognito) {
 			co.addArguments("--incognito");
 		}
-		Map<String, Object> prefs = new HashedMap<String, Object>();
+		Map<String, Object> prefs = new HashedMap<>();
 		prefs.put("plugins.always_open_pdf_externally", true);
 		prefs.put("download.prompt_for_download", false);
 		prefs.put("download.directory_upgrade", true);

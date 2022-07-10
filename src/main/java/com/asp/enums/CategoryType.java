@@ -8,5 +8,5 @@ package com.asp.enums;
  */
 public enum CategoryType {
 
-	REGRESSION, SMOKE, SANITY;
+	REGRESSION, SMOKE, SANITY, DEFAULTCATEGORY;
 }

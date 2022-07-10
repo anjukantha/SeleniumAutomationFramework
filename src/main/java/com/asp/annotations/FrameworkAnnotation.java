@@ -29,7 +29,7 @@ public @interface FrameworkAnnotation {
 	 * 
 	 * @author Anjan S P
 	 */
-	public String[] author() default { "Anjan" };
+	public String[] author() default { "Default Author" };
 
 	/**
 	 * Stores the category in form of Enum Array. Include the possible values in

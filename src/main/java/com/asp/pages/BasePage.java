@@ -1,6 +1,5 @@
 package com.asp.pages;
 
-import static com.asp.enums.LogType.INFO;
 import static com.asp.enums.LogType.PASS;
 import static com.asp.reports.Logger.log;
 
@@ -206,7 +205,7 @@ public class BasePage {
 	 */
 	protected void srollIntoView(int x, int y) {
 		((JavascriptExecutor) DriverManager.getDriver()).executeScript("window.scrollBy(" + x + "," + y + ")");
-		log(INFO, "Scrolled by coordinates X: " + x + ", Y: " + y);
+		log(PASS, "Scrolled by coordinates X: " + x + ", Y: " + y);
 	}
 
 	/**
