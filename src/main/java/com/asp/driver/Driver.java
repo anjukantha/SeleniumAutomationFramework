@@ -4,10 +4,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Objects;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.events.EventFiringDecorator;
 
 import com.asp.enums.ConfigProperties;
+import com.asp.listeners.WebEventListener;
 import com.asp.utils.PropertyUtils;
 
 /**
@@ -46,40 +49,44 @@ public final class Driver {
 	 */
 	public static void initDriver() {
 		if (Objects.isNull(DriverManager.getDriver())) {
+			WebDriver original = null;
 			switch (browser) {
 			case "chrome":
-				DriverManager.setDriver(GetChromeDriver.driver(false));
+				original = GetChromeDriver.driver(false);
 				break;
 			case "chrome-incognito":
-				DriverManager.setDriver(GetChromeDriver.driver(true));
+				original = GetChromeDriver.driver(true);
 				break;
 			case "firefox":
-				DriverManager.setDriver(GetFirefoxDriver.driver(false));
+				original = GetFirefoxDriver.driver(false);
 				break;
 			case "firefox-private":
-				DriverManager.setDriver(GetFirefoxDriver.driver(true));
+				original = GetFirefoxDriver.driver(true);
 				break;
 			case "edge":
-				DriverManager.setDriver(GetEdgeDriver.driver(false));
+				original = GetEdgeDriver.driver(false);
 				break;
 			case "edge-inprivate":
-				DriverManager.setDriver(GetEdgeDriver.driver(true));
+				original = GetEdgeDriver.driver(true);
 				break;
 			case "grid": {
 				EdgeOptions eo = new EdgeOptions();
 				eo.setPlatformName("Windows 10");
 				try {
-					DriverManager.setDriver(
-							new RemoteWebDriver(new URL(PropertyUtils.get(ConfigProperties.SELENIUMGRIDURL)), eo));
+					original = new RemoteWebDriver(new URL(PropertyUtils.get(ConfigProperties.SELENIUMGRIDURL)), eo);
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
 				}
 			}
 				break;
 			default:
-				DriverManager.setDriver(GetEdgeDriver.driver(false));
+				original = GetEdgeDriver.driver(false);
 				break;
 			}
+			WebEventListener listener = new WebEventListener();
+			WebDriver decorated = new EventFiringDecorator(listener).decorate(original);
+			DriverManager.setDriver(decorated);
+			DriverManager.getDriver().manage().window().maximize();
 		}
 	}
 

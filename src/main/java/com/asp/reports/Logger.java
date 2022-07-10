@@ -33,7 +33,7 @@ public final class Logger {
 
 	static {
 		MAP.put(LogType.PASS, PASS);
-		MAP.put(LogType.FAIL, FAIL.andThen(TAKESCREENSHOTFAIL));
+		MAP.put(LogType.FAIL, FAIL);
 		MAP.put(LogType.SKIP, SKIP);
 		MAP.put(LogType.INFO, INFO);
 		MAP.put(LogType.CONSOLE, CONSOLE);
@@ -47,7 +47,11 @@ public final class Logger {
 	}
 
 	public static void log(LogType status, String message) {
-		if (!PropertyUtils.get(ConfigProperties.PASSEDSTEPSSCREENSHOTS).equalsIgnoreCase("yes")) {
+		if (status == LogType.PASS
+				&& !PropertyUtils.get(ConfigProperties.PASSEDSTEPSSCREENSHOTS).equalsIgnoreCase("yes")) {
+			MAP.getOrDefault(status, EXTENTANDCONSOLE).accept(message);
+		} else if (status == LogType.FAIL
+				&& !PropertyUtils.get(ConfigProperties.FAILEDSTEPSSCREENSHOTS).equalsIgnoreCase("yes")) {
 			MAP.getOrDefault(status, EXTENTANDCONSOLE).accept(message);
 		} else {
 			SCREENSHOTMAP.getOrDefault(status, EXTENTANDCONSOLE).accept(message);

@@ -31,7 +31,7 @@ public class BasePage {
 		WebElement element = ExplicitWaitFactory.performExplicitWait(waitstrategy,
 				DriverManager.getDriver().findElement(by), null);
 		element.click();
-		log(PASS, elementname + " is clicked");
+		log(PASS, "<b>" + elementname + "</b> is clicked");
 		return element;
 	}
 
@@ -46,7 +46,7 @@ public class BasePage {
 	protected WebElement clickUsingJS(By by, String elementname) {
 		WebElement element = DriverManager.getDriver().findElement(by);
 		((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", element);
-		log(PASS, elementname + " is clicked");
+		log(PASS, "<b>" + elementname + "</b> is clicked");
 		return element;
 	}
 
@@ -66,7 +66,7 @@ public class BasePage {
 		WebElement element = ExplicitWaitFactory.performExplicitWait(waitstrategy,
 				DriverManager.getDriver().findElement(by), value);
 		element.sendKeys(value);
-		log(PASS, value + " is entered successfully in " + elementname);
+		log(PASS, "<b>" + value + "</b> is entered successfully in " + elementname);
 		return element;
 	}
 
@@ -82,7 +82,7 @@ public class BasePage {
 	protected WebElement sendKeysUsingJS(By by, String value, String elementname) {
 		WebElement element = DriverManager.getDriver().findElement(by);
 		((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].value='" + value + "'", element);
-		log(PASS, value + " is entered successfully in " + elementname);
+		log(PASS, "<b>" + value + "</b> is entered successfully in " + elementname);
 		return element;
 	}
 
@@ -108,7 +108,7 @@ public class BasePage {
 			s.selectByValue(value);
 			ExplicitWaitFactory.performExplicitWait(waitstrategy, element, value);
 		}
-		log(PASS, value + " is selected successfully in " + elementname);
+		log(PASS, "<b>" + value + "</b> is selected successfully in " + elementname);
 		return element;
 	}
 
@@ -125,7 +125,7 @@ public class BasePage {
 		WebElement element = DriverManager.getDriver().findElement(by);
 		Select s = new Select(element);
 		String value = s.getFirstSelectedOption().toString();
-		log(PASS, "Selected value of " + elementname + " is " + value);
+		log(PASS, "Selected value of " + elementname + " is <b>" + value);
 		return value;
 	}
 
@@ -141,7 +141,7 @@ public class BasePage {
 	protected String getValue(By by, String elementname) {
 		WebElement element = DriverManager.getDriver().findElement(by);
 		String value = element.getAttribute("value");
-		log(PASS, "Value of " + elementname + " is " + value);
+		log(PASS, "Value of " + elementname + " is <b>" + value);
 		return value;
 	}
 
@@ -221,7 +221,7 @@ public class BasePage {
 		((JavascriptExecutor) DriverManager.getDriver()).executeScript(
 				"arguments[0].setAttribute('style', 'background: rgb(255, 255, 153); border: 2px solid red;');",
 				element);
-		log(PASS, "Highlighted the " + elementname);
+		log(PASS, "Highlighted the <b>" + elementname);
 		return element;
 	}
 

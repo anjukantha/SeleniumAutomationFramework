@@ -13,7 +13,7 @@ public class LoginPage extends BasePage {
 	private final By userRadioBtn = By.xpath("//*[@value='user']/../span[@class='checkmark']");
 	private final By typeDD = By.xpath("//select");
 	private final By termsCheckBox = By.id("terms");
-	private final By signInBtn = By.id("signInBtn");
+	private final By signInBtn = By.id("signInBtni");
 	private final By okayBtn = By.id("okayBtn");
 
 	public LoginPage enterUserName(String userName) {

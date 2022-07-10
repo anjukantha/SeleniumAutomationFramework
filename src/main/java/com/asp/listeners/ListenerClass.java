@@ -125,6 +125,7 @@ public class ListenerClass implements ITestListener, ISuiteListener {
 	public void onTestFailure(ITestResult result) {
 		RetryAnalyzeManager.unload();
 		log(FAIL, "Test: " + FrameworkConstants.getTestName() + " failed");
+		log(FAIL, result.getThrowable().toString());
 		try {
 			ScreenshotUtils.getScreenshot("Failed screenshots");
 		} catch (IOException e) {

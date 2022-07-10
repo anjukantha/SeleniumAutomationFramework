@@ -4,15 +4,20 @@ import java.io.IOException;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.asp.annotations.FrameworkAnnotation;
 import com.asp.driver.Driver;
 import com.asp.driver.DriverManager;
+import com.asp.enums.CategoryType;
 import com.asp.enums.ConfigProperties;
+import com.asp.listeners.ListenerClass;
 import com.asp.pages.LoginPage;
 import com.asp.utils.PropertyUtils;
 import com.asp.utils.ScreenshotUtils;
 
+@Listeners(ListenerClass.class)
 class LoginPageTest {
 
 	@BeforeMethod
@@ -26,6 +31,7 @@ class LoginPageTest {
 		Driver.quitDriver();
 	}
 
+	@FrameworkAnnotation(category = CategoryType.SMOKE)
 	@Test
 	void loginTest1() throws IOException {
 		new LoginPage().enterUserName("rahulshettyacademy").enterPassword("learning").clickUserRadioButton()
