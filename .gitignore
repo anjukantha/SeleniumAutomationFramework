@@ -16,6 +16,7 @@ local.properties
 target/
 test-output/
 test-results/
+BrowserProfiles/
 
 # External tool builders
 .externalToolBuilders/

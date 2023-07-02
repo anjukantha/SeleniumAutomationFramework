@@ -79,7 +79,7 @@ public final class Driver {
 				}
 			}
 			WebEventListener listener = new WebEventListener();
-			WebDriver decorated = new EventFiringDecorator(listener).decorate(driver);
+			WebDriver decorated = new EventFiringDecorator<WebDriver>(listener).decorate(driver);
 			DriverManager.setDriver(decorated);
 			DriverManager.getDriver().manage().window().maximize();
 		} else if (isBrowserClosed(DriverManager.getDriver())) {
@@ -199,7 +199,10 @@ public final class Driver {
 			WebDriverManager.chromedriver().setup();
 		}
 		ChromeOptions co = new ChromeOptions();
-		co.setPlatformName("Windows 10");
+		// Below code is to use particular location as data folder so that cookie and cache data can be stored.
+//		co.addArguments("--user-data-dir=" + System.getProperty("user.dir") + "/BrowserProfiles/chrome/");
+//		co.addArguments("--profile-directory=Automation");
+		co.setAcceptInsecureCerts(true);
 		if (incognito) {
 			co.addArguments("--incognito");
 		}
@@ -223,7 +226,10 @@ public final class Driver {
 			WebDriverManager.edgedriver().setup();
 		}
 		EdgeOptions eo = new EdgeOptions();
-		eo.setPlatformName("Windows 10");
+		// Below code is to use particular location as data folder so that cookie and cache data can be stored.
+//		eo.addArguments("--user-data-dir=" + System.getProperty("user.dir") + "/BrowserProfiles/edge/");
+//		eo.addArguments("--profile-directory=Automation");
+		eo.setAcceptInsecureCerts(true);
 		if (inprivate) {
 			eo.addArguments("-inprivate");
 		}
@@ -247,7 +253,10 @@ public final class Driver {
 			WebDriverManager.firefoxdriver().setup();
 		}
 		FirefoxOptions options = new FirefoxOptions();
-		options.setPlatformName("Windows 10");
+		// Below code is to use particular location as data folder so that cookie and cache data can be stored.
+//		options.addArguments("--user-data-dir=" + System.getProperty("user.dir") + "/BrowserProfiles/firefox/");
+//		options.addArguments("--profile-directory=Automation");
+		options.setAcceptInsecureCerts(true);
 		if (privateBrowser) {
 			options.addArguments("-private");
 		}
