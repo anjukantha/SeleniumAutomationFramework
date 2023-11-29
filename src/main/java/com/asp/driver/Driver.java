@@ -212,6 +212,7 @@ public final class Driver {
 		prefs.put("download.directory_upgrade", true);
 		prefs.put("download.default_directory", FrameworkConstants.getTempPath());
 		co.setExperimentalOption("prefs", prefs);
+		co.setExperimentalOption("excludeSwitches", new String[] {"enable-automation"});
 		return co;
 	}
 
@@ -239,6 +240,7 @@ public final class Driver {
 		prefs.put("download.directory_upgrade", true);
 		prefs.put("download.default_directory", FrameworkConstants.getTempPath());
 		eo.setExperimentalOption("prefs", prefs);
+		eo.setExperimentalOption("excludeSwitches", new String[] {"enable-automation"});
 		return eo;
 	}
 
