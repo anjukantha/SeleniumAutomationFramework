@@ -43,6 +43,7 @@ class LoginPageTest {
 	void loginTest2() throws IOException {
 		new LoginPage().enterUserName("Anjan").enterPassword("password").clickUserRadioButton().selectType("Student")
 				.clickAgreeTandC().clickSignInBtn();
+
 		ScreenshotUtils.captureSheetshotAsPNG("Login Page");
 	}
 }
