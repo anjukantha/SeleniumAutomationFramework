@@ -271,5 +271,4 @@ public final class Driver {
 		options.addPreference("pdfjs.disabled", true);
 		return options;
 	}
-
 }
